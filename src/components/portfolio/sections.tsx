@@ -492,7 +492,7 @@ export function Contact() {
               <Magnetic><Btn href={`mailto:${PROFILE.email}`}><Mail className="h-4 w-4" /> Email Me</Btn></Magnetic>
               <Magnetic><Btn href={PROFILE.github} variant="ghost" target="_blank" rel="noreferrer"><GithubIcon /> GitHub</Btn></Magnetic>
               <Magnetic><Btn href={PROFILE.linkedin} variant="ghost" target="_blank" rel="noreferrer"><LinkedinIcon /> LinkedIn</Btn></Magnetic>
-              <Magnetic><Btn href="/resume.pdf" variant="ghost" download="Lalit-Chavan-Resume.pdf"><Download className="h-4 w-4" /> Resume</Btn></Magnetic>
+              <Magnetic><Btn href="/lalitnewresume.pdf" variant="ghost" download="Lalit-Chavan-Resume.pdf"><Download className="h-4 w-4" /> Resume</Btn></Magnetic>
             </div>
             <div className="reveal mt-10 space-y-3 font-mono text-sm">
               <a href={`mailto:${PROFILE.email}`} className="flex items-center gap-3 text-muted-foreground hover:text-foreground"><Mail className="h-4 w-4 text-violet" />{PROFILE.email}</a>
