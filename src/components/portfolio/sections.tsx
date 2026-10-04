@@ -190,46 +190,70 @@ export function Hero({ start }: { start: boolean }) {
 export function About() {
   const ref = useRef<HTMLElement>(null);
   useReveal(ref);
+
   useIso(() => {
     const ctx = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>(".count").forEach((el) => {
-        const end = Number(el.dataset["to"]);
-        const o = { v: 0 };
-        gsap.to(o, { v: end, duration: 1.6, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 90%" }, onUpdate: () => (el.textContent = Math.round(o.v) + "+") });
+      gsap.from(".about-card", {
+        y: 50,
+        opacity: 0,
+        stagger: 0.12,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".about-content",
+          start: "top 85%",
+        },
       });
-      gsap.from(".stat", { y: 50, opacity: 0, stagger: 0.12, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: ".stats", start: "top 85%" } });
     }, ref);
+
     return () => ctx.revert();
   }, []);
-  const stats = [
-    { n: 3, l: "Software Projects" },
-    { n: 18, l: "REST API Endpoints" },
-    { n: 35, l: "Service Categories" },
-  ];
+
   return (
-    <section id="about" ref={ref} className="mx-auto max-w-6xl px-6 py-32">
+    <section
+      id="about"
+      ref={ref}
+      className="mx-auto max-w-6xl px-6 py-32"
+    >
       <SectionLabel n="01" label="About" />
-      <div className="grid gap-16 lg:grid-cols-2">
-        <div>
-          <h2 className="reveal font-display text-4xl font-bold leading-tight tracking-tight sm:text-6xl">Building experiences,<br /><span className="text-gradient">not just applications.</span></h2>
-          <p className="reveal mt-6 flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted-foreground"><MapPin className="h-3.5 w-3.5" /> {PROFILE.location}</p>
+
+      <div className="about-content grid gap-16 lg:grid-cols-2">
+        <div className="about-card">
+          <h2 className="reveal font-display text-4xl font-bold leading-tight tracking-tight sm:text-6xl">
+            Building experiences,
+            <br />
+            <span className="text-gradient">
+              not just applications.
+            </span>
+          </h2>
+
+          <p className="reveal mt-6 flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+            <MapPin className="h-3.5 w-3.5" />
+            {PROFILE.location}
+          </p>
         </div>
-        <div className="space-y-5 text-lg leading-relaxed text-muted-foreground">
-          <p className="reveal">I'm <span className="text-foreground">Lalit Chavan</span>, a Computer Science and Engineering (Data Science) student and Full Stack Software Developer.</p>
-          <p className="reveal">I enjoy building complete web applications from frontend interfaces to backend APIs, databases and deployment.</p>
-          <p className="reveal">I'm particularly interested in creating scalable, responsive and interactive products using modern JavaScript technologies.</p>
-        </div>
-      </div>
-      <div className="stats mt-20 grid grid-cols-2 gap-4 lg:grid-cols-4">
-        {stats.map((s) => (
-          <div key={s.l} className="stat glass glow-border rounded-2xl p-6 transition-transform hover:-translate-y-1">
-            <div className="count font-display text-5xl font-bold text-gradient" data-to={s.n}>0+</div>
-            <div className="mt-2 text-sm text-muted-foreground">{s.l}</div>
-          </div>
-        ))}
-        <div className="stat glass glow-border rounded-2xl p-6 transition-transform hover:-translate-y-1">
-          <div className="font-display text-3xl font-bold leading-tight text-gradient">Full Stack</div>
-          <div className="mt-2 text-sm text-muted-foreground">Development</div>
+
+        <div className="about-card space-y-5 text-lg leading-relaxed text-muted-foreground">
+          <p className="reveal">
+            I'm{" "}
+            <span className="text-foreground">
+              Lalit Chavan
+            </span>
+            , a Computer Science and Engineering (Data Science)
+            student and Full Stack Software Developer.
+          </p>
+
+          <p className="reveal">
+            I enjoy building complete web applications from
+            frontend interfaces to backend APIs, databases and
+            deployment.
+          </p>
+
+          <p className="reveal">
+            I'm particularly interested in creating scalable,
+            responsive and interactive products using modern
+            JavaScript technologies.
+          </p>
         </div>
       </div>
     </section>
